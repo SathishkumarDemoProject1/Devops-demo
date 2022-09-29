@@ -1,1 +1,1 @@
-Demo Project(feature-1)
+Demo Project(feature-1).
