@@ -1,7 +1,6 @@
 #!/usr/bin/env groovy
 
 node("pipeline"){
-    sh "echo 1234"
-    sh "sleep 120"
+    sh "echo Building java project"
     sh "mvn clean install"
 }
