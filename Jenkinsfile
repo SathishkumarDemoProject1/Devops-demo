@@ -11,4 +11,9 @@ node(){
     stage("Building java project"){
      sh "${mvn}/bin/mvn clean install"
     }
+ stage("Code Quality check"){
+    withSonarQubeEnv("DEMO_SONAR") {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=devops"
+    }
+ }
 }
