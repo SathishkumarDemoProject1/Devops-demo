@@ -6,11 +6,9 @@ node(){
              branches: [[name: '*/feature-1']],
              userRemoteConfigs: [[url: 'https://github.com/SathishkumarDemoProject1/Devops-demo.git']]])
     }
-    stage("Updating path"){
-        sh "export PATH=/home/ec2-user/jenkins-ssh/apache-maven-3.8.6/bin:$PATH"
-    }
+    def mvn = tool "maven mavenV3.8.6"
     sh "echo Building java project"
     stage("Building java project"){
-        sh "/home/ec2-user/jenkins-ssh/apache-maven-3.8.6/bin/mvn clean install"
+     sh "${mvn}/bin/mvn clean install"
     }
 }
