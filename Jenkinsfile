@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-
+ 
 node(){
     stage("Git Clone"){
         checkout([$class: 'GitSCM',
