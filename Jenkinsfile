@@ -15,8 +15,9 @@ node("big-machine"){
     withSonarQubeEnv("DEMO_SONAR") {
       sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=devops"
     }
-    timeout(time: 10, unit: 'MINUTES') {
-      waitForQualityGate abortPipeline: true 
+    timeout(time: 2, unit: 'MINUTES') {
+         sh "echo Checking sonar status"
     }
+    waitForQualityGate abortPipeline: true 
  }
 }
