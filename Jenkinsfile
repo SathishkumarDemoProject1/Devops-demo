@@ -9,7 +9,9 @@ node("big-machine"){
 
    stage ("building package with docker mvn") {
       def mvnImage = docker.image('maven:3.5.4-jdk-11');
-      sh "mvn clean install"
+      mvnImage.inside(){
+         sh "mvn clean install"
+      }
    }
 
     def mvn = tool "mavenV3.8.6"
