@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
  
-node(){
+node("big-machine"){
     stage("Git Clone"){
         checkout([$class: 'GitSCM',
              branches: [[name: '*/feature-1']],
