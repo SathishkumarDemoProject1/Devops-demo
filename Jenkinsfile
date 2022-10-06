@@ -6,28 +6,21 @@ node("big-machine"){
              branches: [[name: '*/feature-1']],
              userRemoteConfigs: [[url: 'https://github.com/SathishkumarDemoProject1/Devops-demo.git']]])
     }
-
    stage ("building package with docker mvn") {
       def mvnImage = docker.image('maven:3.5.4-jdk-11');
-      mvnImage.inside(){
-         sh "mvn clean install"
+      withSonarQubeEnv("DEMO_SONAR") {
+         mvnImage.inside(){
+            sh "mvn clean install"
+            sh "mvn clean verify sonar:sonar -Dsonar.projectKey=devops"
+         }
       }
    }
-
-    def mvn = tool "mavenV3.8.6"
-    sh "echo Building java project"
-    stage("Building java project"){
-     sh "${mvn}/bin/mvn clean install"
-    }
- stage("Code Quality check"){
-    withSonarQubeEnv("DEMO_SONAR") {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=devops"
-    }
+   stage ("SONAR CHECK")
     sleep(20)
     timeout(time: 1, unit: 'MINUTES') {
          sh "echo Checking sonar status"
          waitForQualityGate abortPipeline: true 
     }
- }
+
 
 }
