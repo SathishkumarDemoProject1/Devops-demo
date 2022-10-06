@@ -6,6 +6,12 @@ node("big-machine"){
              branches: [[name: '*/feature-1']],
              userRemoteConfigs: [[url: 'https://github.com/SathishkumarDemoProject1/Devops-demo.git']]])
     }
+
+   stage ("building package with docker mvn") {
+      def mvnImage = docker.image('maven:3.5.4-jdk-11');
+      sh "mvn clean install"
+   }
+
     def mvn = tool "mavenV3.8.6"
     sh "echo Building java project"
     stage("Building java project"){
@@ -20,6 +26,6 @@ node("big-machine"){
          sh "echo Checking sonar status"
          waitForQualityGate abortPipeline: true 
     }
-
  }
+
 }
