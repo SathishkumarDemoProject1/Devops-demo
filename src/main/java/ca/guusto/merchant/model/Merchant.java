@@ -17,8 +17,5 @@ public class Merchant{
 		this.currency = currency;
 	}
 	
-	public void test_sonar_jenkins_demo(){
-		System.out.println("Jenkins demo");
-	}
 }
 
