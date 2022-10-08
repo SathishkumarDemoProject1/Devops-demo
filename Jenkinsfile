@@ -1,7 +1,6 @@
 #!/usr/bin/env groovy
  
 node(){
-    def docker = tool "docker"
     stage("Git Clone"){
         checkout([$class: 'GitSCM',
              branches: [[name: '*/feature-1']],
@@ -24,7 +23,7 @@ node(){
 //     }
  }
  stage ("build docker image") {
-  sh "${docker}/bin/docker build -t sathishkumar281995/devops-demo-image ."
+  sh "docker build -t sathishkumar281995/devops-demo-image ."
  }
 
 }
