@@ -27,7 +27,7 @@ node(){
  }
  
   stage ("push docker image") {
-  sh "docker push sathishkumar281995/devops-demo-image:latest ."
+  sh "docker push sathishkumar281995/devops-demo-image:latest"
  }
 
 }
