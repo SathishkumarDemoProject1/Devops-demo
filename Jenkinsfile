@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
  
 node(){
+    tool "docker"
     stage("Git Clone"){
         checkout([$class: 'GitSCM',
              branches: [[name: '*/feature-1']],
