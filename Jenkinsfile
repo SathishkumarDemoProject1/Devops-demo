@@ -27,7 +27,10 @@ node(){
  }
  
   stage ("push docker image") {
-  sh "docker push sathishkumar281995/devops-demo-image:latest"
+   withCredentials([string(credentialsId: 'docker_password', variable: 'PASSWORD')]) {
+    sh "docker login -u sathishkumar281995 -p $PASSWORD"
+    sh "docker push sathishkumar281995/devops-demo-image:latest"
+   }
  }
 
 }
